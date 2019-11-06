@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.GoodsDao">
+
+	<select id="queryGoodsAll" resultType="com.bw.entity.Goods">
+		select g.gid,g.gname,g.gname2,b.bname,k.kname,g.gsize,g.gcount,
+		g.gmoney,g.gbq,g.gpic from goods g,brand b,goodskind k where g.bid=b.bid 
+		and g.kid = k.kid 
+	</select>
+	
+	<select id="queryGoodskind" resultType="com.bw.entity.Goodskind">
+		select * from goodskind
+	</select>
+	
+	<select id="queryBrandAll" resultType="com.bw.entity.Brand">
+		select * from brand
+	</select>
+	
+	<insert id="addGoods" parameterType="com.bw.entity.Goods">
+		INSERT INTO goods 
+		(gname, gname2, bid, kid, gsize, gmoney, gcount, gbq, gpic) 
+		VALUES 
+		(#{gname}, #{gname2},#{bid} , #{kid}, #{gsize}, #{gmoney},#{gcount} , #{gbq},#{gpic})
+	</insert>
+</mapper>
